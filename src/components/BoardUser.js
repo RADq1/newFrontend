@@ -10,7 +10,9 @@ const BoardUser = () => {
   useEffect(() => {
     UserService.getUserBoard().then(
       (response) => {
-        setContent(response.data);
+        //setContent(response.data);
+        //Ustawienie tego, co ma sie wyswietlic dla zalogowanego uzytkownika
+        setContent(MyGrades)
       },
       (error) => {
         const _content =
@@ -21,7 +23,6 @@ const BoardUser = () => {
           error.toString();
 
         setContent(_content);
-
         if (error.response && error.response.status === 401) {
           EventBus.dispatch("logout");
         }
@@ -33,7 +34,6 @@ const BoardUser = () => {
     <div className="container">
       <header className="jumbotron">
         <h3>{content}</h3>
-        <MyGrades/>
       </header>
     </div>
   );
