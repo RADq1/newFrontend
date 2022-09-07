@@ -1,0 +1,201 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+import { createStudent } from "../../slices/auth";
+import { clearMessage } from "../../slices/message";
+
+const CreateStudent = ({setNumber}) => {
+    const [successful, setSuccessful] = useState(false);
+
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  const initialValues = {
+    name: "",
+    surname: "",
+    username: "",
+    email: "",
+    password: "",
+    indexNumber: 1,
+    birthDate: Date.parse(),
+    isStudent: true,
+  };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+        .required("To pole jest obowiazkowe!"),
+    surname: Yup.string()
+        .required("To pole jest obowiazkowe!"),
+    username: Yup.string()
+      .test(
+        "len",
+        "Login musi mieć pomiędzy 3, a 20 znaków.",
+        (val) =>
+          val &&
+          val.toString().length >= 3 &&
+          val.toString().length <= 20
+      )
+      .required("To pole jest obowiazkowe!"),
+    email: Yup.string()
+      .email("Wprowadź poprawny e-mail.")
+      .required("To pole jest obowiazkowe!"),
+    password: Yup.string()
+      .test(
+        "len",
+        "Hasło musi mieć pomiędzy 6, a 40 znaków.",
+        (val) =>
+          val &&
+          val.toString().length >= 6 &&
+          val.toString().length <= 40
+      )
+      .required("This field is required!"),
+    indexNumber: Yup.number()
+        .test(
+            "len",
+            "Indeks musi zawierac 6 cyfr",
+            (val) =>
+            // val &&
+            val.toString().length === 6
+        )
+        .required("Pole obowiązkowe"),
+    birthDate: Yup.date()
+        .required("Pole obowiązkowe"),
+  });
+
+  const handleRegister = (formValue) => {
+    const { name, surname, username, email, password, indexNumber, birthDate, isStudent } = formValue;
+
+    setSuccessful(false);
+
+    dispatch(createStudent({ name, surname, username, email, password, indexNumber, birthDate, isStudent}))
+      .unwrap()
+      .then(() => {
+        setSuccessful(true);
+      })
+      .catch(() => {
+        setSuccessful(false);
+      });
+  };
+    return(
+    <div>
+<div className="card card-container">
+        <img
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          alt="profile-img"
+          className="profile-img-card"
+        />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleRegister}
+        >
+          <Form>
+            {!successful && (
+              <div>
+                <div className="form-group">
+                  <label htmlFor="name">Imię</label>
+                  <Field name="name" type="text" className="form-control" />
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="surname">Nazwisko</label>
+                  <Field name="surname" type="text" className="form-control" />
+                  <ErrorMessage
+                    name="surname"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="username">Login</label>
+                  <Field name="username" type="text" className="form-control" />
+                  <ErrorMessage
+                    name="username"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <Field name="email" type="email" className="form-control" />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <Field
+                    name="password"
+                    type="password"
+                    className="form-control"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Numer indeksu</label>
+                  <Field name="indexNumber" type="number" className="form-control" />
+                  <ErrorMessage
+                    name="indexNumber"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="date">Data urodzenia</label>
+                  <Field name="birthDate" type="date" className="form-control" />
+                  <ErrorMessage
+                    name="birthDate"
+                    component="div"
+                    className="alert alert-danger"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary btn-block">Stwórz studenta!</button>
+                </div>
+              </div>
+            )}
+          </Form>
+        </Formik>
+      </div>
+
+      {message && (
+        <div className="form-group">
+          <div
+            className={successful ? "alert alert-success" : "alert alert-danger"}
+            role="alert"
+          >
+            {message}
+          </div>
+        </div>
+      )}
+        {/* <button onClick={() => {
+            setShowComponent(prevValue => !prevValue)
+        }}>Wróć</button> */}
+       <button onClick={() => setNumber(0)}>Wróć</button>
+    </div>);
+}
+
+export default CreateStudent

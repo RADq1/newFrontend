@@ -23,6 +23,7 @@ import EventBus from "./common/EventBus";
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [showMyGrades, setShowMyGrades] = useState(false);
 
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -33,11 +34,13 @@ const App = () => {
 
   useEffect(() => {
     if (currentUser) {
-      setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
+      setShowModeratorBoard(currentUser.roles.includes("ROLE_EMPLOYEE"));
       setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+      setShowMyGrades(currentUser.roles.includes("ROLE_STUDENT"));
     } else {
       setShowModeratorBoard(false);
       setShowAdminBoard(false);
+      setShowMyGrades(false);
     }
 
     EventBus.on("logout", () => {
@@ -70,7 +73,7 @@ const App = () => {
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/mod"} className="nav-link">
-                  Moderator Board
+                  Panel pracownika
                 </Link>
               </li>
             )}
@@ -78,12 +81,12 @@ const App = () => {
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                  Panel admina
                 </Link>
               </li>
             )}
 
-            {currentUser && (
+            {showMyGrades && (
               <li className="nav-item">
                 <Link to={"/myGrades"} className="nav-link">
                   Moje oceny
@@ -112,12 +115,6 @@ const App = () => {
                   Login
                 </Link>
               </li>
-{/*
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li> */}
             </div>
           )}
         </nav>
@@ -126,7 +123,7 @@ const App = () => {
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            {/* <Route exact path="/register" component={Register} /> */}
             <Route exact path="/profile" component={Profile} />
             <Route path="/contact" component={Contact}/>
             <Route path="/information" component={Information} />
