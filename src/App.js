@@ -6,19 +6,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 import Login from "./components/Login";
-import Register from "./components/Register";
+// import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Logo from "./icons/Logo";
-import Contact from "./components/Contact"
-import Information from "./components/Information"
+import Contact from "./components/Contact";
+import Information from "./components/Information";
 
 import { logout } from "./slices/auth";
 
 import EventBus from "./common/EventBus";
+import EditProfile from "./components/EditProfile";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -57,7 +58,7 @@ const App = () => {
       <div>
         <nav className="navbar navbar-expand menu">
           <Link to={"/"} className="navbar-brand">
-            <Logo/>
+            <Logo />
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -89,7 +90,7 @@ const App = () => {
             {showMyGrades && (
               <li className="nav-item">
                 <Link to={"/myGrades"} className="nav-link">
-                  Moje oceny
+                  Moje oceny końcowe
                 </Link>
               </li>
             )}
@@ -99,7 +100,7 @@ const App = () => {
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">
-                 Witaj, {currentUser.username}
+                  Witaj, {currentUser.name}
                 </Link>
               </li>
               <li className="nav-item">
@@ -112,7 +113,7 @@ const App = () => {
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/login"} className="nav-link">
-                  Login
+                  Zaloguj się
                 </Link>
               </li>
             </div>
@@ -125,11 +126,12 @@ const App = () => {
             <Route exact path="/login" component={Login} />
             {/* <Route exact path="/register" component={Register} /> */}
             <Route exact path="/profile" component={Profile} />
-            <Route path="/contact" component={Contact}/>
+            <Route path="/contact" component={Contact} />
             <Route path="/information" component={Information} />
             <Route path="/myGrades" component={BoardUser} />
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
+            <Route path="/edit" component={EditProfile} />
           </Switch>
         </div>
       </div>

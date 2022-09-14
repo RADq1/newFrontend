@@ -10,7 +10,7 @@ import CreateLessons from "./adminPanel/CreateLessons";
 
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
-  const [showComponent, setShowComponent] = useState(false);
+  // const [showComponent, setShowComponent] = useState(false);
   const [number, setNumber] = useState(0);
   // const hide = () => {
   //   setShowComponent(!showComponent);
@@ -60,7 +60,7 @@ const BoardAdmin = () => {
         }
       }
     );
-  }, [number, setShowComponent]);
+  }, [number]);
 
   return (
     <div className="container">
