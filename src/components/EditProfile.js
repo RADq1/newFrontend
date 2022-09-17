@@ -3,13 +3,13 @@ import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const EditProfile = () => {
   const [surname, setSurname] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [actualPassword, setActualPassword] = useState("");
+  // const [actualPassword, setActualPassword] = useState("");
   //sprawdzenie, czy uzytkownik jest zalogowany
   const { user: currentUser } = useSelector((state) => state.auth);
   if (!currentUser) {

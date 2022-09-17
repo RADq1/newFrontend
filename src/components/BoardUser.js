@@ -12,7 +12,7 @@ const BoardUser = () => {
       (response) => {
         //setContent(response.data);
         //Ustawienie tego, co ma sie wyswietlic dla zalogowanego uzytkownika
-        setContent(MyGrades)
+        setContent(<MyGrades />);
       },
       (error) => {
         const _content =

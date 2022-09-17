@@ -128,7 +128,7 @@ const App = () => {
             <Route exact path="/profile" component={Profile} />
             <Route path="/contact" component={Contact} />
             <Route path="/information" component={Information} />
-            <Route path="/myGrades" component={BoardUser} />
+            <Route exact path="/myGrades" component={BoardUser} />
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
             <Route path="/edit" component={EditProfile} />
