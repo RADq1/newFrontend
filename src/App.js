@@ -15,6 +15,8 @@ import BoardAdmin from "./components/BoardAdmin";
 import Logo from "./icons/Logo";
 import Contact from "./components/Contact";
 import Information from "./components/Information";
+import AcceptTerms from "./components/sendEmail/AcceptTerms";
+import SendEmail from "./components/sendEmail/SendEmail";
 
 import { logout } from "./slices/auth";
 
@@ -103,7 +105,7 @@ const App = () => {
                   Witaj, {currentUser.name}
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="logoutsign">
                 <a href="/login" className="nav-link" onClick={logOut}>
                   Wyloguj się
                 </a>
@@ -111,7 +113,7 @@ const App = () => {
             </div>
           ) : (
             <div className="navbar-nav ml-auto">
-              <li className="nav-item">
+              <li className="logoutsign">
                 <Link to={"/login"} className="nav-link">
                   Zaloguj się
                 </Link>
@@ -132,6 +134,8 @@ const App = () => {
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
             <Route path="/edit" component={EditProfile} />
+            <Route path="/accept" component={AcceptTerms} />
+            <Route path="/sendemail" component={SendEmail} />
           </Switch>
         </div>
       </div>

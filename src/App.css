@@ -31,9 +31,44 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
-
+.logoutsign {
+  padding: 0 20px;
+  border-radius: 10%;
+}
+.logoutsign:hover{
+  background-color: white;
+}
+.logoutsign:hover a{
+  color: #830e21;
+}
 .menu {
-  background-color: rgb(248, 246, 246);
+  background-color: #830e21;
+  font-family: "Myriad Pro";
+  font-size: 16px;
+}
+a,a:active,a:visited {
+  color:white;
+}
+button {
+  display: inline-block;
+  padding: 25px 25px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #830e21;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #fff;
+  color: #830e21;
 }
 /* body{
   display:flex

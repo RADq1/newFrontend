@@ -3,6 +3,10 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import SendEmail from "./sendEmail/SendEmail";
+// import AcceptTerms from "./sendEmail/AcceptTerms";
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,7 +15,7 @@ const Wrapper = styled.div`
 `;
 const Title = styled.div`
   font-size: 40px;
-  padding-bottom: 50px;
+  padding: 40px;
   /* &:hover {
     color: red;
   } */
@@ -28,26 +32,34 @@ const Table = styled.table`
     border: 1px solid black;
   }
   th {
-    color: rgb(220, 40, 40);
+    /* color: rgb(220, 40, 40); */
+    font-style: bold;
   }
 `;
 const SendGrades = styled.button`
-  display: flex;
-  /* gap: 5px; */
-  width: 30%;
-  height: 20px;
-  align-items: center;
-
-  div {
-    width: 50px;
-    height: 100px;
-    background-color: blue;
-    margin: 5px;
+  display: inline-block;
+  padding: 25px 25px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #830e21;
+  border: none;
+  border-radius: 7px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  transition: 0.2s;
+  &:hover {
+    background-color: #fff;
+    color: #830e21;
   }
 `;
 const MyGrades = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [data, setData] = useState();
+  const history = useHistory();
   console.log(currentUser.id);
   console.log(data);
   useEffect(() => {
@@ -80,21 +92,22 @@ const MyGrades = () => {
           <th>Ocena</th>
           <th>Liczba punktów ECTS</th>
         </tr>
-        {data?.map((dat) => (
+        {data?.map(({ Lesson, grade }) => (
           <tr>
-            <td>{dat.Lesson.name}</td>
-            <td>{dat.grade === 2 ? <Two>{dat.grade}</Two> : dat.grade}</td>
-            <td>{dat.Lesson.numberOfECTS}</td>
+            <td>{Lesson.name}</td>
+            <td>{grade === 2 ? <Two>{grade}</Two> : grade}</td>
+            <td>{Lesson.numberOfECTS}</td>
           </tr>
         ))}
       </Table>
       <SendGrades
         onClick={() => {
-          console.log("Działa");
+          history.push("/accept");
         }}
       >
         Wyślij oceny firmie
       </SendGrades>
+      <button>Importuj oceny z innej szkoły</button>
     </Wrapper>
   );
 };
