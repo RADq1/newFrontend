@@ -5,9 +5,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-import SendEmail from "./sendEmail/SendEmail";
-// import AcceptTerms from "./sendEmail/AcceptTerms";
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

@@ -7,7 +7,6 @@ import ListFirms from "./ListFirms";
 const SendEmail = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [data, setData] = useState();
-  const [grades, setGrades] = useState();
 
   const [text, setText] = useState("");
   const [subject, setSubject] = useState(
@@ -31,6 +30,7 @@ const SendEmail = () => {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    setSubject(`Oceny użytkownika ${currentUser.name} ${currentUser.surname}`);
     if (number.length !== 9) {
       alert("Numer telefonu powinien składać się z 9 cyfr!");
       return;
