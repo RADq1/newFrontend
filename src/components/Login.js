@@ -85,7 +85,7 @@ const Login = (props) => {
             <div className="form-group">
               <button
                 type="submit"
-                className="btn btn-primary btn-block"
+
                 disabled={loading}
               >
                 {loading && (

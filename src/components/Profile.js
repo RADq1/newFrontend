@@ -71,8 +71,10 @@ const Profile = () => {
               ? currentUser.address
               : "Brak podanego adresu, uzupełnij dane"}
           </div>
-          <div>Numer indeksu: {currentUser.indexNumber}</div>
+          <div>Numer indeksu: {currentUser.indexNumber !== null ? currentUser.indexNumber : "brak indeksu"}</div>
           <div>Data urodzenia: {currentUser.birthDate}</div>
+          <div>Numer telefonu: {currentUser.phone}</div>
+          <div>Aktualny semestr: {currentUser.semestr}</div>
         </Infomation>
         <button onClick={() => history.push("/edit")}>Edytuj profil</button>
       </MainDiv>

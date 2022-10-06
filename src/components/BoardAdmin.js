@@ -4,26 +4,16 @@ import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
 import AdminPanel from "./adminPanel/AdminPanel";
 import CreateStudent from "./adminPanel/CreateStudent";
-import ListOfGrades from "./adminPanel/ListOfGrades";
 import CreateEmployee from "./adminPanel/CreateEmployee";
 import CreateLessons from "./adminPanel/CreateLessons";
 
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
-  // const [showComponent, setShowComponent] = useState(false);
   const [number, setNumber] = useState(0);
-  // const hide = () => {
-  //   setShowComponent(!showComponent);
-  //   console.log(showComponent)
-  // }
-  // console.log(showComponent)
   useEffect(() => {
     UserService.getAdminBoard().then(
       (response) => {
         setContent(response.data);
-        // console.log(number);
-        // setNumber(1);
-        // console.log(number);
         switch(number)
         {
           case 0: setContent(<AdminPanel setNumber={setNumber}/>)
@@ -34,16 +24,8 @@ const BoardAdmin = () => {
           break;
           case 3: setContent(<CreateLessons setNumber={setNumber}/>)
           break;
-          case 4: setContent(<ListOfGrades setNumber={setNumber}/>)
-          break;
           default: setContent(<AdminPanel setNumber={setNumber}/>)
         }
-
-        // if(showComponent){
-        //   setContent(<CreateStudent setShowComponent={setShowComponent}/>)
-        // } else {
-        //   setContent(<AdminPanel setShowComponent={setShowComponent}/>)
-        // }
       },
       (error) => {
         const _content =
@@ -63,8 +45,8 @@ const BoardAdmin = () => {
   }, [number]);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
+    <div>
+      <header>
         <h3>{content}</h3>
       </header>
     </div>

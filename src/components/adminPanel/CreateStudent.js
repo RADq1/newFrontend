@@ -173,7 +173,7 @@ const CreateStudent = ({setNumber}) => {
                 </div>
 
                 <div className="form-group">
-                  <button type="submit" className="btn btn-primary btn-block">Stwórz studenta!</button>
+                  <button type="submit">Stwórz studenta!</button>
                 </div>
               </div>
             )}
@@ -191,9 +191,6 @@ const CreateStudent = ({setNumber}) => {
           </div>
         </div>
       )}
-        {/* <button onClick={() => {
-            setShowComponent(prevValue => !prevValue)
-        }}>Wróć</button> */}
        <button onClick={() => setNumber(0)}>Wróć</button>
     </div>);
 }

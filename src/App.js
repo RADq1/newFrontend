@@ -75,7 +75,7 @@ const App = () => {
             </li>
             {showModeratorBoard && (
               <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
+                <Link to={"/employee"} className="nav-link">
                   Panel pracownika
                 </Link>
               </li>
@@ -131,7 +131,7 @@ const App = () => {
             <Route path="/contact" component={Contact} />
             <Route path="/information" component={Information} />
             <Route exact path="/myGrades" component={BoardUser} />
-            <Route path="/mod" component={BoardModerator} />
+            <Route path="/employee" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
             <Route path="/edit" component={EditProfile} />
             <Route path="/accept" component={AcceptTerms} />

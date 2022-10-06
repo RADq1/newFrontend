@@ -25,6 +25,26 @@ export const createStudent = createAsyncThunk(
   }
 );
 
+export const createEmployee = createAsyncThunk(
+  "auth/createEmployee",
+  async ({ name, surname, username, email, password, birthDate, phone, title }, thunkAPI) => {
+    try {
+      const response = await AuthService.createEmployee(name, surname, username, email, password, birthDate, phone, title );
+      thunkAPI.dispatch(setMessage(response.data.message));
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
 export const register = createAsyncThunk(
   "auth/register",
   async ({ username, email, password }, thunkAPI) => {

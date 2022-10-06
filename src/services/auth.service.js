@@ -15,6 +15,19 @@ const createStudent = (name, surname, username, email, password, indexNumber, bi
   });
 };
 
+const createEmployee = (name, surname, username, email, password, birthDate, phone, title) => {
+  return axios.post(API_URL + "createEmployee", {
+    name,
+    surname,
+    username,
+    email,
+    password,
+    birthDate,
+    phone,
+    title
+  });
+};
+
 const register = (username, email, password) => {
   return axios.post(API_URL + "signup", {
     username,
@@ -44,6 +57,7 @@ const logout = () => {
 
 const authService = {
   createStudent,
+  createEmployee,
   register,
   login,
   logout,

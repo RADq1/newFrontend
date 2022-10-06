@@ -57,8 +57,8 @@ const MyGrades = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [data, setData] = useState();
   const history = useHistory();
-  console.log(currentUser.id);
-  console.log(data);
+  // console.log(currentUser.id);
+  // console.log(data);
   useEffect(() => {
     const baseUrl = "http://localhost:8080";
     const url = baseUrl + "/showGrades/" + currentUser.id;
@@ -67,7 +67,7 @@ const MyGrades = () => {
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
-          console.log(data);
+          // console.log(data);
           setData(data);
           if (!data) return;
         } else {
@@ -88,12 +88,20 @@ const MyGrades = () => {
           <th>Nazwa przedmiotu</th>
           <th>Ocena</th>
           <th>Liczba punktów ECTS</th>
+          <th>Semestr</th>
+          <th>Forma zajęć</th>
         </tr>
-        {data?.map(({ Lesson, grade }) => (
+        {/* {console.log(data?.sort(data.Lesson.semestr))} */}
+
+        {data?.sort((a, b) => a.Lesson.semestr - b.Lesson.semestr).map(({ Lesson, grade }) => (
           <tr>
             <td>{Lesson.name}</td>
-            <td>{grade === 2 ? <Two>{grade}</Two> : grade}</td>
+            {/* <td>{grade === 2 ? <Two>{grade}</Two> : grade}</td> */}
+            <td>{grade !== null ? (grade === 2 ? <Two>{grade}</Two> : grade) : "(brak ocen)"}</td>
+            {/* <td>{if(grade === 2)}</td> */}
             <td>{Lesson.numberOfECTS}</td>
+            <td>{Lesson.semestr}</td>
+            <td>{Lesson.type}</td>
           </tr>
         ))}
       </Table>
@@ -104,7 +112,9 @@ const MyGrades = () => {
       >
         Wyślij oceny firmie
       </SendGrades>
-      <button>Importuj oceny z innej szkoły</button>
+      <button onClick={() => {
+        alert("TODO")
+      }}>Importuj oceny z innej szkoły</button>
     </Wrapper>
   );
 };

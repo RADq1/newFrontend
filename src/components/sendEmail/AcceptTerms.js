@@ -12,6 +12,7 @@ const AcceptTerms = () => {
   return (
     <div>
       <div>
+        <h4>Opis uwarunkowań prawnych dotyczących udostępnienia informacji o ocenach</h4>
         <p>1. warunek</p>
         <p>2. warunek</p>
         <p>3. warunek</p>
