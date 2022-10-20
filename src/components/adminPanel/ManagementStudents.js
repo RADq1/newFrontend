@@ -5,6 +5,7 @@ const ManagementStudents = ({setNumber}) => {
             <button onClick={() => setNumber(6)}>Przypisz studenta do kierunku</button>
             <button onClick={() => setNumber(7)}>Przepisz studenta na kolejny semestr</button>
             <button onClick={() => setNumber(8)}>Usuń studenta z bazy</button>
+            <button onClick={() => setNumber(0)}>Wróć</button>
         </div>
     );
 }

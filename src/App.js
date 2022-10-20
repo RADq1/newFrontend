@@ -16,6 +16,7 @@ import BoardAdmin from "./components/BoardAdmin";
 import Logo from "./icons/Logo";
 import Contact from "./components/Contact";
 import Information from "./components/Information";
+import SearchForEmployee from "./components/SearchForEmployee";
 import AcceptTerms from "./components/sendEmail/AcceptTerms";
 import SendEmail from "./components/sendEmail/SendEmail";
 
@@ -151,6 +152,8 @@ const App = () => {
             <Route path="/edit" component={EditProfile} />
             <Route path="/accept" component={AcceptTerms} />
             <Route path="/sendemail" component={SendEmail} />
+            <Route path="/searchForEmployee" component={SearchForEmployee} />
+            "/searchForEmployee"
           </Switch>
         </div>
       </div>
