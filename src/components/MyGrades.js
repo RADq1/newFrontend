@@ -112,9 +112,6 @@ const MyGrades = () => {
       >
         Wyślij oceny firmie
       </SendGrades>
-      <button onClick={() => {
-        alert("TODO")
-      }}>Importuj oceny z innej szkoły</button>
     </Wrapper>
   );
 };

@@ -6,6 +6,12 @@ import AdminPanel from "./adminPanel/AdminPanel";
 import CreateStudent from "./adminPanel/CreateStudent";
 import CreateEmployee from "./adminPanel/CreateEmployee";
 import CreateLessons from "./adminPanel/CreateLessons";
+import ImportGrades from "./adminPanel/ImportGrades";
+import ManagementStudents from "./adminPanel/ManagementStudents";
+import AssignStudentToField from "./adminPanel/AssignStudentToField";
+import AssignStudentToSemester from "./adminPanel/AssignStudentToSemester";
+import DeleteStudent from "./adminPanel/DeleteStudent";
+import GoogleCalendar from "./employeePanel/GoogleCalendar";
 
 const BoardAdmin = () => {
   const [content, setContent] = useState("");
@@ -23,6 +29,18 @@ const BoardAdmin = () => {
           case 2: setContent(<CreateEmployee setNumber={setNumber}/>)
           break;
           case 3: setContent(<CreateLessons setNumber={setNumber}/>)
+          break;
+          case 4: setContent(<ImportGrades setNumber={setNumber}/>)
+          break;
+          case 5: setContent(<ManagementStudents setNumber={setNumber}/>)
+          break;
+          case 6: setContent(<AssignStudentToField setNumber={setNumber}/>)
+          break;
+          case 7: setContent(<AssignStudentToSemester setNumber={setNumber}/>)
+          break;
+          case 8: setContent(<DeleteStudent setNumber={setNumber}/>)
+          break;
+          case 9: setContent(<GoogleCalendar setNumber={setNumber}/>)
           break;
           default: setContent(<AdminPanel setNumber={setNumber}/>)
         }

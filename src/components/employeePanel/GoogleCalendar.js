@@ -1,8 +1,8 @@
-
+import GoogleEventComponent from './GoogleEventComponent';
 const GoogleCalendar = ({setNumber}) => {
     return(
         <div>
-            <p>TODO</p>
+             <GoogleEventComponent />
             <button onClick={() => setNumber(0)}>Wróć</button>
         </div>
     );

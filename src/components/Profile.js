@@ -73,7 +73,7 @@ const Profile = () => {
           </div>
           <div>Numer indeksu: {currentUser.indexNumber !== null ? currentUser.indexNumber : "brak indeksu"}</div>
           <div>Data urodzenia: {currentUser.birthDate}</div>
-          <div>Numer telefonu: {currentUser.phone}</div>
+          <div>Numer telefonu: {currentUser.phone !== null ? currentUser.phone : "brak podanego numeru"}</div>
           <div>Aktualny semestr: {currentUser.semestr}</div>
         </Infomation>
         <button onClick={() => history.push("/edit")}>Edytuj profil</button>
@@ -98,7 +98,6 @@ const Profile = () => {
     return (
       <MainDiv>
         <h1>Konto pracownika</h1> <strong>{currentUser.name}</strong>
-        <p>Zdjęcie użytkownika:</p>
         <a href="/edit">
           <button>Edytuj profil</button>
         </a>

@@ -2,13 +2,12 @@ import "../../css/adminPanel.css";
 const AdminPanel = ({ setNumber }) => {
   return (
     <div>
-      {/* <button onClick={() => setShowComponent(prevValue => !prevValue)}>Stwórz studenta</button> */}
       <button onClick={() => setNumber(1)}>Stwórz studenta</button>
       <button onClick={() => setNumber(2)}>Stwórz pracownika</button>
-      <button onClick={() => setNumber(3)}>Stwórz zajęcia</button>
-      {/* <button onClick={() => setNumber(4)}>Pobierz liste ocen studenta dla firm</button> */}
-      {/* <button>Przypisz pracownika do zajęć</button>
-            <button>Przypisz pracownika do grupy</button> */}
+      <button onClick={() => setNumber(4)}>Importuj oceny</button>
+      <button onClick={() => setNumber(9)}>Dodaj terminy obron prac dyplomowych</button>
+      <button onClick={() => setNumber(5)}>Zarządzanie studentem</button>
+      <button onClick={() => setNumber(3)}>Zarządzanie zajęciami</button>
     </div>
   );
 };

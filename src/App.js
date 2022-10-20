@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { gapi } from "gapi-script";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -88,12 +89,26 @@ const App = () => {
                 </Link>
               </li>
             )}
-
             {showMyGrades && (
               <li className="nav-item">
                 <Link to={"/myGrades"} className="nav-link">
                   Moje oceny końcowe
                 </Link>
+              </li>
+            )}
+            {showMyGrades && (
+              <li className="nav-item">
+                <Link to={"/searchForEmployee"} className="nav-link">
+                  Wyszukaj pracownika
+                </Link>
+              </li>
+            )}
+             {showMyGrades && (
+              <li className="nav-item">
+                {/* <Link to={"https://calendar.google.com/calendar/u/0?cid=MTk5OHJhZHFAZ21haWwuY29t"} className="nav-link">
+                  Terminy obron
+                </Link> */}
+                <a href="https://calendar.google.com/calendar/u/0?cid=MTk5OHJhZHFAZ21haWwuY29t" className="nav-link">Terminy obron</a>
               </li>
             )}
           </div>

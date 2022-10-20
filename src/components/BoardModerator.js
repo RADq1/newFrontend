@@ -29,8 +29,6 @@ const BoardModerator = () => {
           break;
           case 3: setContent(<AssignedLessons setNumber={setNumber} currentUser={currentUser}/>)
           break;
-          case 4: setContent(<GoogleCalendar setNumber={setNumber} currentUser={currentUser}/>)
-          break;
           case 5: setContent(<AddGrades setNumber={setNumber} currentUser={currentUser}/>)
           break;
           case 6: setContent(<ChangeGrades setNumber={setNumber} currentUser={currentUser}/>)

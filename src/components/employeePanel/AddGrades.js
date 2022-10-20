@@ -100,7 +100,10 @@ const AddGrades = ({ setNumber }) => {
               .post(baseUrl, {
                 grades: state.grades,
               })
-              .then((res) => console.log(res));
+              .then((res) => {
+                console.log(res)
+                alert("Dodano oceny do bazy danych")
+              });
           } catch (e) {
             console.log(e);
           }
