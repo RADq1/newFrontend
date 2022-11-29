@@ -9,6 +9,7 @@ flex-direction: column;
 align-items: center;
 `;
 const Table = styled.table`
+  width: 200px;
   th,
   td {
     text-align: center;
@@ -22,7 +23,7 @@ const Table = styled.table`
 `;
 const SearchForEmployee = () => {
     const [data, setData] = useState();
-    const [searchValue, setSearchValue] = useState();
+    const [searchValue, setSearchValue] = useState("");
     useEffect(() => {
         const baseUrl = "http://localhost:8080";
         const url = baseUrl + "/sendEmployeeList/";
@@ -54,15 +55,7 @@ const SearchForEmployee = () => {
         }
         return null;
     }).map((dat) => {
-        return(<div>
-            <Table>
-                <tr>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
-                    <th>Tytuł</th>
-                    <th>Email</th>
-                    <th>Numer telefonu</th>
-                </tr>
+        return(
                 <tr>
                     <td>{dat.name}</td>
                     <td>{dat.surname}</td>
@@ -70,11 +63,10 @@ const SearchForEmployee = () => {
                     <td>{dat.email != null ? dat.email : "Brak emailu"}</td>
                     <td>{dat.phone != null ? dat.phone : "Brak numeru telefonu"}</td>
                 </tr>
-            </Table>
-        </div>)
+        )
     })
 
-    // console.log(searchEmployee);
+    // console.log("eeee", searchEmployee);
 
     const handleInput = (e) => {
         // console.log(e.target.value)
@@ -84,7 +76,17 @@ const SearchForEmployee = () => {
     <Wrapper>
         <h1>Wyszukaj pracownika po nazwisku</h1><br/>
         <input onChange={handleInput}></input><br/>
-        <div>{searchValue && searchEmployee}</div>
+        <Table>
+          {searchValue.length !== 0 ?(
+          <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Tytuł</th>
+                    <th>Email</th>
+                    <th>Numer telefonu</th>
+          </tr>) : null}
+          {searchValue && searchEmployee}
+        </Table>
     </Wrapper>)
 }
 

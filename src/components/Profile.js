@@ -45,6 +45,15 @@ const Infomation = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+const Button = styled.button`
+display: flex;
+flex-direction: row;
+/* text-align: left; */
+width: 50%;
+margin-top: 10%;
+padding: 5px;
+`
 const Profile = () => {
   const history = useHistory();
   //pobranie konkretnego uzytkownika, ktory jest zalogowany
@@ -61,7 +70,8 @@ const Profile = () => {
     return (
       <MainDiv>
         <h4>Konto studenta:</h4> <strong>{currentUser.username}</strong>
-        <p>Informacje o studencie: </p>
+        <br/>
+        <p>Dane osobowe oraz informacje o studencie: </p>
         <Infomation>
           <div>Imię: {currentUser.name}</div>
           <div>Nazwisko: {currentUser.surname}</div>
@@ -76,7 +86,7 @@ const Profile = () => {
           <div>Numer telefonu: {currentUser.phone !== null ? currentUser.phone : "brak podanego numeru"}</div>
           <div>Aktualny semestr: {currentUser.semestr}</div>
         </Infomation>
-        <button onClick={() => history.push("/edit")}>Edytuj profil</button>
+        <Button onClick={() => history.push("/edit")}>Edytuj profil</Button>
       </MainDiv>
     );
 
@@ -84,12 +94,24 @@ const Profile = () => {
   } else if (currentUser.roles.toString() === "ROLE_ADMIN") {
     return (
       <MainDiv>
-        <h1>Konto admina</h1> <strong>{currentUser.name}</strong>
+        <h1>Konto admina</h1>
+        <br/>
+        <p>Dane osobowe oraz informacje o adminie: </p>
+        <Infomation>
+          <div>Imię: {currentUser.name}</div>
+          <div>Nazwisko: {currentUser.surname}</div>
+          <div>
+            Adres zamieszkania:{" "}
+            {currentUser.address
+              ? currentUser.address
+              : "Brak podanego adresu, uzupełnij dane"}
+          </div>
+          <div>Data urodzenia: {currentUser.birthDate}</div>
+          <div>Numer telefonu: {currentUser.phone !== null ? currentUser.phone : "brak podanego numeru"}</div>
+        </Infomation>
         {/* {currentUser.roles.toString()} */}
         {/* <button><a href="/edit">Edytuj profil</a></button> */}
-        <a href="/edit">
-          <button>Edytuj profil</button>
-        </a>
+        <Button onClick={() => history.push("/edit")}>Edytuj profil</Button>
       </MainDiv>
     );
 
@@ -97,10 +119,20 @@ const Profile = () => {
   } else if (currentUser.roles.toString() === "ROLE_EMPLOYEE") {
     return (
       <MainDiv>
-        <h1>Konto pracownika</h1> <strong>{currentUser.name}</strong>
-        <a href="/edit">
-          <button>Edytuj profil</button>
-        </a>
+        <h1>Konto pracownika</h1> {currentUser.title} {currentUser.name} {currentUser.surname}
+        <br/>
+        <p>Dane osobowe oraz informacje o pracowniku: </p>
+        <Infomation>
+          <div>
+            Adres zamieszkania:{" "}
+            {currentUser.address
+              ? currentUser.address
+              : "Brak podanego adresu, uzupełnij dane"}
+          </div>
+          <div>Data urodzenia: {currentUser.birthDate}</div>
+          <div>Numer telefonu: {currentUser.phone !== null ? currentUser.phone : "brak podanego numeru"}</div>
+        </Infomation>
+        <Button onClick={() => history.push("/edit")}>Edytuj profil</Button>
         {/* {currentUser.roles.toString()} */}
       </MainDiv>
     );

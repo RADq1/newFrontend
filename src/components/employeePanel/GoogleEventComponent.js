@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import {GoogleLogin} from 'react-google-login';
 import axios from "axios";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+display: flex;
+flex-wrap: wrap;
+flex-direction: column;
+justify-content: center;
+margin: 0;
+padding: 0;
+`
+const Formik = styled.form`
+display: flex;
+flex-direction: column;
+justify-content: center;
+`
+
+const TextArea = styled.textarea`
+height: 200px;
+`
+const Button = styled.button`
+display: flex;
+flex-direction: column;
+justify-content: center;
+`
+
 
 const GoogleEventComponent = () => {
 
@@ -56,13 +81,13 @@ const GoogleEventComponent = () => {
             accessType='offline'
             scope='openid email profile https://www.googleapis.com/auth/calendar'
             />
-        </div>) : (<div>
-        <form onSubmit={handleSubmit}>
+        </div>) : (<Wrapper>
+        <Formik onSubmit={handleSubmit}>
             <label htmlFor='summary'>Temat pracy dyplomowej</label>
             <input type="text" id='summary' value={summary} onChange={e => setSummary(e.target.value)}/>
             <br/>
             <label htmlFor='description'>Opis, numer pracy dyplomowej</label>
-            <textarea id='summary' value={description} onChange={e => setDescription(e.target.value)}/>
+            <TextArea id='summary' value={description} onChange={e => setDescription(e.target.value)}/>
             <br/>
             <label htmlFor='location'>Adres, sala obron</label>
             <input type="text" id='location' value={location} onChange={e => setLocation(e.target.value)}/>
@@ -72,9 +97,9 @@ const GoogleEventComponent = () => {
             <br/>
             <label htmlFor='startDateTime'>Koniec obrony</label>
             <input type="datetime-local" id='endDateTime' value={endDateTime} onChange={e => setEndDateTime(e.target.value)}/>
-            <button type="submit">Dodaj godziny obron</button>
-        </form>
-    </div>)
+            <Button type="submit">Dodaj godziny obron</Button>
+        </Formik>
+    </Wrapper>)
     }
     </div>
     );

@@ -105,7 +105,7 @@ const App = () => {
               </li>
             )}
              {showMyGrades && (
-              <li className="nav-item">
+              <li >
                 {/* <Link to={"https://calendar.google.com/calendar/u/0?cid=MTk5OHJhZHFAZ21haWwuY29t"} className="nav-link">
                   Terminy obron
                 </Link> */}

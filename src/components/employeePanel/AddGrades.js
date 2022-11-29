@@ -3,7 +3,12 @@ import { useSelector, useDispatch} from "react-redux";
 import axios from "axios";
 
 import { SET_ERROR, SET_GRADES, SET_NEW_GRADE } from "../../shared/constants/gradeReducerAction";
-
+import styled from "styled-components";
+const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`;
 const gradeReducer = (state, action) => {
   switch (action.type) {
     case 'SET_GRADES':
@@ -110,7 +115,7 @@ const AddGrades = ({ setNumber }) => {
         }
 
         return(
-        <div>
+        <Wrapper>
             <p>Wybierz przedmiot</p>
             <form onSubmit={() => {}}>
             <select onChange={change}>
@@ -138,7 +143,7 @@ const AddGrades = ({ setNumber }) => {
             <button type="submit" onClick={sendGrades}>Dodaj oceny</button>
             </form>
             <button onClick={() => setNumber(2)}>Wróć</button>
-        </div>
+        </Wrapper>
     );
 }
 

@@ -1,9 +1,30 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import styled from "styled-components";
 import ListFirms from "./ListFirms";
 
+const MainDiv = styled.div`
+display: flex;
+justify-content: center;
+`
+const Wrapper = styled.form`
+display: flex;
+flex-wrap: nowrap;
+justify-content: center;
+margin: 0;
+padding: 0;
+width: 40%;
+`;
+const Input = styled.input`
+display: flex;
+width: 500px;
+height: 40px;
+`
+const Select = styled.select`
+width: 500px;
+height: 40px;
+`
 const SendEmail = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const [data, setData] = useState();
@@ -77,12 +98,17 @@ const SendEmail = () => {
 
   return (
     <div>
+
       <button onClick={clickList}>{messageList}</button>
-      {list}
+      <MainDiv>
+      <Wrapper>
+        {list}
+      </Wrapper>
+
       {!sent ? (
         <form onSubmit={submitHandler}>
           <label>Wybierz firmę do której chcesz wysłać e-mail:</label>
-          <select
+          <Select
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -91,28 +117,30 @@ const SendEmail = () => {
             <option value="1998radq@gmail.com">1998radq@gmail.com</option>
             <option value="alimuns123@wp.pl">alimuns123@wp.pl</option>
             <option value="radgac000@pbs.edu.pl">radgac000@pbs.edu.pl</option>
-          </select>
+          </Select>
           <label>Wiadomość dla firmy: </label>
-          <input
-            type="text"
+          <Input
+            type="textarea"
             value={text}
             onChange={(e) => {
               setText(e.target.value);
             }}
           />
           <label>Podaj numer telefonu</label>
-          <input
+          <Input
             type="number"
             value={number}
             onChange={(e) => {
               setNumber(e.target.value);
             }}
           />
+          <br/>
           <button type="submit">Wyślij maila</button>
         </form>
       ) : (
         <h1>Email wysłany</h1>
       )}
+          </MainDiv>
     </div>
   );
 };

@@ -3,8 +3,35 @@ import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
 // import { useEffect } from "react";
-
+const Button = styled.button`
+width: 20%;
+height: 5%;
+padding: 10px;
+margin-top: 20px;
+margin-left: 0px;
+margin-bottom: 20px;
+font-size: 16px;
+`
+const Wrapper = styled.div`
+display: flex;
+flex-direction: row;
+align-items: baseline;
+justify-content: space-between;
+`
+const TextArea = styled.input`
+width: 70%;
+height: 40px;
+::placeholder{
+  margin: 5px
+}
+&:input:focus {
+        outline: none;
+        box-shadow: 0px 0px 2px red;
+    }
+/* border-radius: 4px; */
+`
 const EditProfile = () => {
   const [surname, setSurname] = useState("");
   const [address, setAddress] = useState("");
@@ -71,25 +98,30 @@ const EditProfile = () => {
 
   return (
     <div>
-      Edycja profilu: {currentUser.name}
-      <br />
-      Id użytkownika: {currentUser.id}
+      <h1>Edycja profilu <h5>{currentUser.name} {currentUser.surname}</h5></h1>
+      {/* Id użytkownika: {currentUser.id} */}
       {/* <button onClick={changeName}>Zmień nazwisko</button> */}
       <label>Zmień nazwisko</label>
-      <input
-        type="text"
-        class="form-control"
-        placeholder={currentUser.surname}
-        value={surname}
-        onChange={(e) => setSurname(e.target.value)}
-      />
-      <button type="submit" class="btn btn-primary" onClick={sendSurname}>
-        Aktualizuj nazwisko
-      </button>
-      <div>
-        <label>Zmień adres</label>
-        <input
-          autocomplete="false"
+        <form autoComplete="off">
+        <Wrapper>
+        <TextArea
+          type="text"
+          placeholder={currentUser.surname}
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)}
+        />
+        <Button type="submit" onClick={sendSurname}>
+          Aktualizuj nazwisko
+        </Button>
+        </Wrapper>
+        </form>
+
+
+      <label>Zmień adres</label>
+      <form autoComplete="off">
+      <Wrapper>
+        <TextArea
+          autoComplete="none"
           type="text"
           class="form-control"
           placeholder={
@@ -100,24 +132,29 @@ const EditProfile = () => {
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-      </div>
-      <button type="submit" class="btn btn-primary" onClick={sendAddress}>
+      <Button type="submit" onClick={sendAddress}>
         Aktualizuj adres
-      </button>
-      <div></div>
+      </Button>
+      </Wrapper>
+      </form>
+
+
       <label>Zmień hasło: </label>
-      <form autocomplete="off">
-        <input
-          autocomplete="false"
+      <form autoComplete="off">
+      <Wrapper>
+        <TextArea
+          autoComplete="none"
           type="password"
           class="form-control"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" class="btn btn-primary" onClick={sendPassword}>
+        <Button type="submit" onClick={sendPassword}>
           Aktualizuj hasło
-        </button>
-      </form>
+        </Button>
+        </Wrapper>
+        </form>
+
       <p>*wszystkie dane zostaną zaaktualizowane po ponownym zalogowaniu*</p>
     </div>
   );

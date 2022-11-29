@@ -2,7 +2,7 @@
 const AssignStudentToSemester = ({setNumber}) => {
     return(
         <div>
-            <h1>ss</h1>
+            <h1>Przypisz studenta do semestru</h1>
             <button onClick={() => setNumber(5)}>Wróć</button>
         </div>
     );

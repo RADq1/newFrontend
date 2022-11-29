@@ -2,6 +2,12 @@ import React from "react";
 import { useEffect, useState} from "react";
 import axios from "axios";
 import styled from "styled-components";
+
+const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+`;
 const Table = styled.table`
   th,
   td {
@@ -38,8 +44,10 @@ const StudentList = ({ setNumber }) => {
       }, []);
 
     return(
-        <div>
+        <Wrapper>
+          <br/>
             <p>Lista wszystkich studentów:</p>
+            <br/>
             <Table>
                 <tr>
                     <th>Imię</th>
@@ -57,7 +65,7 @@ const StudentList = ({ setNumber }) => {
         ))}
             </Table>
             <button onClick={() => setNumber(0)}>Wróć</button>
-        </div>
+        </Wrapper>
     );
 }
 

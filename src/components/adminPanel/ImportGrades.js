@@ -1,5 +1,14 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const Button = styled.button`
+display: flex;
+flex-direction: row;
+justify-content: center;
+padding: 30px;
+text-align: center;
+`
 const ImportGrades = ({setNumber}) => {
     const [file, setFile] = useState(null);
     const [studentList, setStudentList] = useState(null)
@@ -64,7 +73,6 @@ const ImportGrades = ({setNumber}) => {
             return alert("Plik musi być typu *.xlsx!")
         }
     }
-    
     return(
         <div>
         <form onSubmit={sendExcelFile}>
@@ -82,9 +90,10 @@ const ImportGrades = ({setNumber}) => {
             </select>
             <label>Wybierz plik, który chcesz wysłać (*.xlsx)</label>
             <input type="file" name="file" onChange={(e)=> handleFile(e)}></input>
-            <button>Importuj oceny z innej szkoły</button>
+            <br/>
+            <Button>Importuj oceny z innej szkoły</Button>
         </form>
-            <button onClick={() => setNumber(0)}>Wróć</button>
+            <Button onClick={() => setNumber(0)}>Wróć</Button>
         </div>
     );
 }

@@ -1,9 +1,9 @@
 button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
     /* flex-wrap: wrap; */
-    text-align: center;
+    /* text-align: center; */
     padding: 5%;
     margin: 5%;
     /* background-color: black; */

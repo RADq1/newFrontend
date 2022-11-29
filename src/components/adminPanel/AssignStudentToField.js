@@ -1,5 +1,12 @@
 import React, { useState, useEffect} from "react";
+import styled from "styled-components";
 import axios from "axios";
+const Button = styled.button`
+display: flex;
+flex-direction: row;
+padding: 30px;
+`
+
 const AssignStudentToField = ({setNumber}) => {
     const [studentList, setStudentList] = useState(null)
     const [fieldOfStudyList, setFieldOfStudyList] = useState(null)
@@ -86,7 +93,7 @@ const AssignStudentToField = ({setNumber}) => {
                         return <option value={fieldOfStudy.id}>{fieldOfStudy.name}</option>
                     })}
                 </select>
-                <button>Przypisz kierunek studiów</button>
+                <Button>Przypisz kierunek studiów</Button>
             </form>
             <button onClick={() => setNumber(5)}>Wróć</button>
         </div>

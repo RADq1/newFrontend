@@ -2,6 +2,18 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import styled from "styled-components";
+
+const Button = styled.button`
+display:flex;
+justify-content: center;
+flex-direction: row;
+margin: 30px 0;
+padding: 10px;
+`
+const Pe = styled.p`
+margin: 18px;
+`
 const AcceptTerms = () => {
   const [accepted, setAccepted] = useState(false);
   const history = useHistory();
@@ -12,8 +24,8 @@ const AcceptTerms = () => {
   return (
     <div>
       <div>
-        <h4>Opis uwarunkowań prawnych dotyczących udostępnienia informacji o ocenach</h4>
-        <p>1. warunek</p>
+        <h4>Zgoda na udostępnienie listy ocen przez studenta do firm współpracujących z uczelnią</h4>
+        <p>Wyrażam zgodę na przetwarzanie danych osobowych</p>
         <p>2. warunek</p>
         <p>3. warunek</p>
       </div>
@@ -24,8 +36,8 @@ const AcceptTerms = () => {
           setAccepted(!accepted);
         }}
       ></input>
-      Akceptuje warunki
-      <button
+      Wyrażam zgodę
+      <Button
         onClick={() => {
           if (accepted === false) {
             alert("Nie zaakceptowałeś warunków");
@@ -35,8 +47,8 @@ const AcceptTerms = () => {
           }
         }}
       >
-        Przejdź do wyboru firmy
-      </button>
+        <Pe>Przejdź do wyboru firmy</Pe>
+      </Button>
     </div>
   );
 };
